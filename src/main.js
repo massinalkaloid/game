@@ -65,13 +65,13 @@
       ctx.fillStyle = '#dfe7ff';
       ctx.font = '700 26px system-ui, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('PRESS  F  /  .  /  SPACE  TO  START', cx, H * 0.86);
+      ctx.fillText('TAP  ▶  /  PRESS  F · SPACE  TO  START', cx, H * 0.86);
     }
     ctx.font = '600 14px system-ui';
     ctx.fillStyle = '#7e8bb5';
     ctx.fillText('2 player local · or fight the CPU', cx, H * 0.92);
 
-    if (Input.keyEdge('KeyF') || Input.keyEdge('Period') || Input.keyEdge('Space') || Input.keyEdge('Enter')) {
+    if (Input.keyEdge('KeyF') || Input.keyEdge('Period') || Input.menuConfirm()) {
       scene = SCENE.SELECT;
       sel.ready = [false, false];
     }
@@ -172,8 +172,8 @@
     if (sel.ready[0] && sel.ready[1]) {
       ctx.fillStyle = Math.floor(frame / 20) % 2 ? '#fff' : '#ffd86a';
       ctx.font = '900 22px system-ui';
-      ctx.fillText('SPACE / ENTER で バトル開始！', W / 2, H - 70);
-      if (Input.keyEdge('Space') || Input.keyEdge('Enter')) startBattle();
+      ctx.fillText('SPACE / ENTER ( ▶ ) で バトル開始！', W / 2, H - 70);
+      if (Input.menuConfirm()) startBattle();
     }
   }
 
@@ -292,7 +292,7 @@
   }
 
   function checkWin() {
-    if (result) { endTimer--; if (endTimer < 0 && (Input.keyEdge('Space') || Input.keyEdge('Enter'))) { scene = SCENE.SELECT; sel.ready = [false, false]; } return; }
+    if (result) { endTimer--; if (endTimer < 0 && Input.menuConfirm()) { scene = SCENE.SELECT; sel.ready = [false, false]; } return; }
     const alive = fighters.filter(f => f.stocks > 0);
     let winner = null;
     if (alive.length <= 1) {
@@ -410,7 +410,7 @@
     if (endTimer < 0 && Math.floor(frame / 25) % 2 === 0) {
       ctx.font = '700 22px system-ui';
       ctx.fillStyle = '#dfe7ff';
-      ctx.fillText('SPACE / ENTER で キャラ選択へ', W / 2, H * 0.86);
+      ctx.fillText('SPACE / ENTER ( ▶ ) で キャラ選択へ', W / 2, H * 0.86);
     }
   }
 

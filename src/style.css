@@ -44,3 +44,84 @@ html, body {
   user-select: none;
 }
 #hint b { color: #fff; }
+
+/* ---------------- touch controls ---------------- */
+#touch { position: fixed; inset: 0; z-index: 10; pointer-events: none; touch-action: none; }
+#touch.hidden { display: none; }
+
+.stick {
+  position: absolute;
+  left: 4vw; bottom: 6vh;
+  width: 32vw; max-width: 190px; aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(120,150,255,0.10), rgba(120,150,255,0.04));
+  border: 2px solid rgba(150,180,255,0.30);
+  pointer-events: auto; touch-action: none;
+  box-shadow: inset 0 0 30px rgba(80,120,255,0.15);
+}
+.knob {
+  position: absolute; left: 50%; top: 50%;
+  width: 42%; height: 42%; margin: -21% 0 0 -21%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #e6efff, #5a86e6 70%, #3450b0);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55), inset 0 2px 6px rgba(255,255,255,0.4);
+  will-change: transform;
+}
+
+#btns {
+  position: absolute;
+  right: 4vw; bottom: 6vh;
+  width: 40vw; max-width: 240px;
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: flex-end; align-content: flex-end;
+  pointer-events: none;
+}
+.tb {
+  width: 17vw; max-width: 96px; aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font: 800 clamp(13px, 3.4vw, 18px) "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  background: rgba(40,52,86,0.5);
+  pointer-events: auto; touch-action: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .05s, background .05s;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+.tb[data-b="attack"]  { background: rgba(210,70,60,0.55);  border-color: rgba(255,150,140,0.6); }
+.tb[data-b="special"] { background: rgba(190,120,60,0.55); border-color: rgba(255,200,120,0.6); }
+.tb[data-b="jump"]    { background: rgba(60,120,210,0.55); border-color: rgba(150,200,255,0.6); }
+.tb[data-b="shield"]  { background: rgba(60,170,160,0.50); border-color: rgba(150,255,240,0.6); }
+.tb.pressed { transform: scale(0.90); filter: brightness(1.5); }
+
+#startBtn {
+  position: absolute; left: 50%; top: 14px; transform: translateX(-50%);
+  pointer-events: auto; touch-action: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 10px 26px; border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(40,52,86,0.65); color: #fff;
+  font: 800 16px system-ui, sans-serif;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+#startBtn:active { transform: translateX(-50%) scale(0.94); }
+
+#rotateHint {
+  position: fixed; inset: 0; z-index: 30;
+  display: none;
+  align-items: center; justify-content: center; text-align: center;
+  background: rgba(5,6,12,0.92); color: #cdd8ff;
+  font: 800 24px "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+  line-height: 1.8;
+  pointer-events: none;
+}
+
+/* hide keyboard hint on touch devices; show rotate hint in portrait */
+@media (pointer: coarse) {
+  #hint { display: none; }
+}
+@media (orientation: portrait) {
+  #touch:not(.hidden) ~ #hint { }
+  #rotateHint { display: flex; }
+}
+

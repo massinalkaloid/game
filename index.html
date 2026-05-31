@@ -2,13 +2,30 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#05060c" />
 <title>SMASH ARENA</title>
 <link rel="stylesheet" href="src/style.css" />
 </head>
 <body>
   <div id="app">
     <canvas id="game" width="1280" height="720"></canvas>
+
+    <!-- on-screen controls for touch devices -->
+    <div id="touch" class="hidden">
+      <div id="stick" class="stick"><div id="knob" class="knob"></div></div>
+      <div id="btns">
+        <button class="tb" data-b="special" aria-label="special">必殺</button>
+        <button class="tb" data-b="jump"    aria-label="jump">跳</button>
+        <button class="tb" data-b="shield"  aria-label="shield">盾</button>
+        <button class="tb" data-b="attack"  aria-label="attack">攻撃</button>
+      </div>
+      <button id="startBtn">START ▶</button>
+      <div id="rotateHint">📱↻<br/>横向きにすると遊びやすいよ</div>
+    </div>
+
     <div id="hint">P1: <b>WASD</b> 移動 / <b>W</b>ジャンプ / <b>F</b>攻撃 / <b>G</b>必殺 / <b>H</b>シールド &nbsp;•&nbsp; P2: <b>方向キー</b> / <b>↑</b>ジャンプ / <b>.</b>攻撃 / <b>,</b>必殺 / <b>/</b>シールド</div>
   </div>
 
