@@ -1,0 +1,46 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #05060c;
+  overflow: hidden;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  color: #fff;
+}
+
+#app {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, #1a2347 0%, #0a0c18 55%, #05060c 100%);
+}
+
+#game {
+  display: block;
+  width: min(96vw, calc(96vh * 16 / 9));
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(120,150,255,0.15),
+    0 30px 80px rgba(0,0,0,0.7),
+    0 0 120px rgba(60,90,200,0.25);
+  background: #000;
+  image-rendering: auto;
+}
+
+#hint {
+  margin-top: 14px;
+  font-size: clamp(10px, 1.3vw, 15px);
+  letter-spacing: 0.3px;
+  color: #9fb0d8;
+  opacity: 0.85;
+  text-align: center;
+  user-select: none;
+}
+#hint b { color: #fff; }
