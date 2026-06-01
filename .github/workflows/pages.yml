@@ -39,3 +39,12 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Pushes a marker tag only if every previous step (incl. Deploy) succeeded.
+      # Lets the author verify success remotely via `git ls-remote`.
+      - name: Mark deploy success
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f pages-live
+          git push -f origin pages-live
